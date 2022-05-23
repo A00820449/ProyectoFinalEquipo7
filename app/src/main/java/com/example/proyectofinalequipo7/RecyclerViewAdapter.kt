@@ -15,7 +15,8 @@ class RecyclerViewAdapter(var todos : List<Todo>) : RecyclerView.Adapter<Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.cardTitleTextView.text = todos[position].title
+        holder.binding.cardBodyTextView.text = todos[position].body
     }
 
     override fun getItemCount(): Int {
