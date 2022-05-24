@@ -8,7 +8,7 @@ class AppViewModel : ViewModel() {
 
     val todos get() = _todos
 
-    fun addTodo(title: String, body: String, dueDate : Date?) {
+    fun addTodo(title: String, body: String?, dueDate : Date?) {
         _todos.add(Todo(0, title, body, Date(), dueDate))
     }
 }
