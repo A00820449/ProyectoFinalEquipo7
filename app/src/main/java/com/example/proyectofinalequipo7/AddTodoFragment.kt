@@ -76,7 +76,8 @@ class AddTodoFragment : Fragment() {
                     binding.bodyEditText.text.toString().trim()
                 }
 
-                viewModel.addTodo(Todo(0, title, body, Date(), dueDate, false))
+                viewModel.addTodo(Todo(0, title, body, Date(), dueDate, false)
+                )
 
                 binding.titleEditText.text.clear()
                 binding.bodyEditText.text.clear()
