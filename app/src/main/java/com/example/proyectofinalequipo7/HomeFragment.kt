@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectofinalequipo7.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -27,9 +29,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = RecyclerViewAdapter(viewModel.todos)
-        binding.listRecyclerView.adapter = adapter
-        binding.listRecyclerView.layoutManager = LinearLayoutManager(activity)
+
+        lifecycleScope.launch {
+            val adapter = RecyclerViewAdapter(viewModel.getAllTodos())
+            binding.listRecyclerView.adapter = adapter
+            binding.listRecyclerView.layoutManager = LinearLayoutManager(activity)
+        }
     }
 
 }

@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.text.set
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.proyectofinalequipo7.databinding.FragmentAddTodoBinding
+import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.time.LocalDate
 import java.util.*
@@ -59,29 +61,30 @@ class AddTodoFragment : Fragment() {
         }
 
         binding.addButton.setOnClickListener {
-            
-            title = binding.titleEditText.text.toString().trim()
+            lifecycleScope.launch {
+                title = binding.titleEditText.text.toString().trim()
 
-            if (title == "") {
-                failToast.cancel()
-                failToast.show()
-                return@setOnClickListener
+                if (title == "") {
+                    failToast.cancel()
+                    failToast.show()
+                    return@launch
+                }
+
+                body = if (binding.bodyEditText.text.toString().trim() == "") {
+                    null
+                } else {
+                    binding.bodyEditText.text.toString().trim()
+                }
+
+                viewModel.addTodo(Todo(0, title, body, Date(), dueDate, false))
+
+                binding.titleEditText.text.clear()
+                binding.bodyEditText.text.clear()
+                binding.dueDateEditText.text.clear()
+
+                successToast.cancel()
+                successToast.show()
             }
-
-            body = if (binding.bodyEditText.text.toString().trim() == "") {
-                null
-            } else {
-                binding.bodyEditText.text.toString().trim()
-            }
-
-            viewModel.addTodo(title, body, dueDate)
-
-            binding.titleEditText.text.clear()
-            binding.bodyEditText.text.clear()
-            binding.dueDateEditText.text.clear()
-
-            successToast.cancel()
-            successToast.show()
         }
     }
 
