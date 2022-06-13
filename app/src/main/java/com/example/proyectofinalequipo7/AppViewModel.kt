@@ -9,6 +9,8 @@ class AppViewModel(private val todoDao: TodoDao) : ViewModel() {
     suspend fun getAllTodos() : List<Todo> = todoDao.getAllTodos()
 
     suspend fun addTodo(todo: Todo) = todoDao.insertTodo(todo)
+
+    suspend fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
 }
 
 class AppViewModelFactory (private val todoDao: TodoDao) : ViewModelProvider.Factory {

@@ -35,9 +35,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            val adapter = RecyclerViewAdapter(viewModel.getAllTodos())
+            val adapter = RecyclerViewAdapter(viewModel.getAllTodos()) { todo : Todo -> updateTodoCallback(todo) }
             binding.listRecyclerView.adapter = adapter
             binding.listRecyclerView.layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun updateTodoCallback(todo : Todo) {
+        lifecycleScope.launch {
+            viewModel.updateTodo(todo)
         }
     }
 

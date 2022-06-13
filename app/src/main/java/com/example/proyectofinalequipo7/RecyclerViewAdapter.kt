@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinalequipo7.databinding.TodoItemBinding
 
-class RecyclerViewAdapter(var todos : List<Todo>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(var todos : List<Todo>, val updateTodoCallback : (todo : Todo) -> Unit) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     lateinit var  context : Context
@@ -22,14 +22,12 @@ class RecyclerViewAdapter(var todos : List<Todo>) : RecyclerView.Adapter<Recycle
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.cardTitleTextView.text = todos[position].title
         holder.binding.cardBodyTextView.text = todos[position].body
+        holder.binding.checkBox.isChecked = todos[position].done
         holder.binding.checkBox.setOnClickListener {
-            if (holder.binding.checkBox.isChecked) {
-                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                Toast.makeText(context, "Not done", Toast.LENGTH_SHORT).show()
-            }
+            todos[position].done = holder.binding.checkBox.isChecked
+            updateTodoCallback(todos[position])
         }
+
     }
 
     override fun getItemCount(): Int {
