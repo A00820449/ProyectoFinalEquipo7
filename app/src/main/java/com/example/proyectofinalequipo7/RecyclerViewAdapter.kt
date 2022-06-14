@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinalequipo7.databinding.TodoItemBinding
 
-class RecyclerViewAdapter(var todos : List<Todo>, val updateTodoCallback : (todo : Todo) -> Unit) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(var todos : MutableList<Todo>, val updateTodoCallback : (todo : Todo) -> Unit, val deleteTodoCallback : (id : Int) -> Unit) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     lateinit var  context : Context
@@ -25,9 +25,18 @@ class RecyclerViewAdapter(var todos : List<Todo>, val updateTodoCallback : (todo
         holder.binding.checkBox.isChecked = todos[position].done
         holder.binding.checkBox.setOnClickListener {
             todos[position].done = holder.binding.checkBox.isChecked
+
+            notifyItemChanged(position)
             updateTodoCallback(todos[position])
         }
+        holder.binding.deleteImageButton.setOnClickListener {
+            val id = todos[position].id
+            todos.removeAt(position)
 
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, todos.size)
+            deleteTodoCallback(id)
+        }
     }
 
     override fun getItemCount(): Int {

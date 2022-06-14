@@ -11,6 +11,8 @@ class AppViewModel(private val todoDao: TodoDao) : ViewModel() {
     suspend fun addTodo(todo: Todo) = todoDao.insertTodo(todo)
 
     suspend fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
+
+    suspend fun deleteTodo(id : Int) = todoDao.deleteTodoById(id)
 }
 
 class AppViewModelFactory (private val todoDao: TodoDao) : ViewModelProvider.Factory {
