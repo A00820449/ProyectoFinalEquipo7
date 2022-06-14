@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinalequipo7.databinding.TodoItemBinding
+import java.util.*
 
 class RecyclerViewAdapter(var todos : MutableList<Todo>, val updateTodoCallback : (todo : Todo) -> Unit, val deleteTodoCallback : (id : Int) -> Unit) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {}
@@ -36,6 +37,14 @@ class RecyclerViewAdapter(var todos : MutableList<Todo>, val updateTodoCallback 
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, todos.size)
             deleteTodoCallback(id)
+        }
+        if (todos[position].dueDate == null) {
+            holder.binding.dateTextView.text = null
+        }
+        else {
+            val c = Calendar.getInstance()
+            c.timeInMillis = todos[position].dueDate?.time!!
+            holder.binding.dateTextView.text = "Due: ${c.get(Calendar.DAY_OF_MONTH)}/${c.get(Calendar.MONTH)}/${c.get(Calendar.YEAR)}"
         }
     }
 
