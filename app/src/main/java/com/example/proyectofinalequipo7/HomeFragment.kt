@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectofinalequipo7.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -35,9 +36,19 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            val adapter = RecyclerViewAdapter(viewModel.getAllTodos().toMutableList(), { todo : Todo -> updateTodoCallback(todo) }, {id : Int -> deleteTodoCallback(id)})
+            val today = Date()
+
+            val adapter = RecyclerViewAdapter(viewModel.getTodosDueBefore(today).toMutableList(), { todo : Todo -> updateTodoCallback(todo) }, { id : Int -> deleteTodoCallback(id)})
             binding.listRecyclerView.adapter = adapter
             binding.listRecyclerView.layoutManager = LinearLayoutManager(activity)
+
+            val adapter2 = RecyclerViewAdapter(viewModel.getTodosDueAfter(today).toMutableList(), { todo : Todo -> updateTodoCallback(todo) }, { id : Int -> deleteTodoCallback(id)})
+            binding.list2RecyclerView.adapter = adapter2
+            binding.list2RecyclerView.layoutManager = LinearLayoutManager(activity)
+
+            val adapter3 = RecyclerViewAdapter(viewModel.getTodosNoDue().toMutableList(), { todo : Todo -> updateTodoCallback(todo) }, { id : Int -> deleteTodoCallback(id)})
+            binding.list3RecyclerView.adapter = adapter3
+            binding.list3RecyclerView.layoutManager = LinearLayoutManager(activity)
         }
     }
 

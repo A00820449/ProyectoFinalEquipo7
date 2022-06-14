@@ -13,6 +13,14 @@ class AppViewModel(private val todoDao: TodoDao) : ViewModel() {
     suspend fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)
 
     suspend fun deleteTodo(id : Int) = todoDao.deleteTodoById(id)
+
+    suspend fun getTodosDueBefore(date: Date) = todoDao.getTodosWithDueDateBefore(date)
+
+    suspend fun getTodosDueAfter(date: Date) = todoDao.getTodosWithDueDateAfter(date)
+
+    suspend fun getTodosDueBetween(dateAfter : Date, dateBefore : Date) = todoDao.getTodosWithDueDateBetween(dateAfter, dateBefore)
+
+    suspend fun getTodosNoDue() = todoDao.getTodosWithNoDueDate()
 }
 
 class AppViewModelFactory (private val todoDao: TodoDao) : ViewModelProvider.Factory {
