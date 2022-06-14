@@ -1,18 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Final Proyect Team 7</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="Settings">Settings</string>
+    <string name="Settings" translatable="false">Settings</string>
     <string name="Home">Home</string>
     <string name="Add">Add</string>
     <string name="Add_Note">Add Note</string>
     <string name="Add_Title">Add Title</string>
     <string name="Add_Description">Add Description (Optional)</string>
     <string name="Due_Date">Due Date (Optional)</string>
-    <string name="language">Language</string>
     <string name="Language_Spinner">Select the language</string>
-    <string name="english">English</string>
+    <string name="language">Language</string>
     <string name="spanish">Spanish</string>
+    <string name="english">English</string>
     <string name="language_select">Select Language</string>
     <string name="preferences">Preferences</string>
     <string name="dark_mode">Dark Mode</string>
