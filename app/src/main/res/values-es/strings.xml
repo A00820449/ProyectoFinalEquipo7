@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Proyecto Final Equipo 7</string>
+    <string name="Settings" translatable="false">Configuracion</string>
+    <string name="Home">Inicio</string>
+    <string name="Add">Agregar</string>
+    <string name="Add_Note">Agregar Nota</string>
+    <string name="Add_Title">Agregar Titulo</string>
+    <string name="Add_Description">Agregar Descripcion (Opcional)</string>
+    <string name="Due_Date">Fecha de Terminacion (Opcional)</string>
+    <string name="Language_Spinner">Selecciona el Idioma</string>
+    <string name="language">Idioma</string>
+    <string name="english">Ingles</string>
+    <string name="spanish">Espanol</string>
+    <string name="language_select">Selecciona el idioma</string>
+    <string name="preferences">Preferencias</string>
+    <string name="dark_mode">Tema Obscuro</string>
+</resources>

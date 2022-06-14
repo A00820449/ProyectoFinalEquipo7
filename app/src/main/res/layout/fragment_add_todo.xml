@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Add Note"
+        android:text="@string/Add_Note"
         android:textSize="24sp" />
 
     <EditText
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
-        android:hint="Add Title"
+        android:hint="@string/Add_Title"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
@@ -32,7 +32,7 @@
         android:height="256dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Add description (Optional)"
+        android:hint="@string/Add_Description"
         android:inputType="textMultiLine" />
 
     <EditText
@@ -42,7 +42,7 @@
         android:clickable="false"
         android:ems="10"
         android:focusable="false"
-        android:hint="Due date (Optional)"
+        android:hint="@string/Due_Date"
         android:inputType="date"
         android:minHeight="48dp" />
 
@@ -50,6 +50,6 @@
         android:id="@+id/addButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add" />
+        android:text="@string/Add" />
 
 </LinearLayout>
