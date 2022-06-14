@@ -2,6 +2,7 @@ package com.example.proyectofinalequipo7
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
@@ -59,9 +60,23 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         // Inflate the layout for this fragment
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        handleThemeChange()
+        binding.switch1.isChecked = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
         setupSpinner()
+        handleThemeChange()
         return binding.root
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val currentNightMode = newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        when (currentNightMode) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                binding.switch1.isChecked = false
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                binding.switch1.isChecked = true
+            } // Night mode is active, we're using dark theme
+        }
     }
 
     private fun handleThemeChange() {
